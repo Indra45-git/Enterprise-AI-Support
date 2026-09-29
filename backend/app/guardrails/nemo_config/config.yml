@@ -1,0 +1,18 @@
+# Production swap-in stub for NVIDIA NeMo Guardrails.
+# pip install nemoguardrails, then point guardrails.py's check_input/check_output
+# at a RailsConfig.from_path(__file__) + LLMRails instance instead of the heuristic
+# functions in guardrails.py. Keep the same GuardrailResult contract so the rest
+# of the app (tool_gateway, agent) needs no changes.
+models:
+  - type: main
+    engine: anthropic
+    model: claude-sonnet-4-6
+
+rails:
+  input:
+    flows:
+      - self check input
+  output:
+    flows:
+      - self check output
+      - self check facts

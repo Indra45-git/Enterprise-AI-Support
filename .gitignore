@@ -1,0 +1,94 @@
+# ============================================================
+#  SECRET / ENVIRONMENT FILES  <- most important section
+# ============================================================
+.env
+.env.*
+!.env.example          # allow only the example template
+
+# ============================================================
+#  PYTHON
+# ============================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+nosetests.xml
+*.cover
+junit*.xml
+
+# mypy / type checkers
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# ============================================================
+#  DATABASE & LOGS  <- contain customer data
+# ============================================================
+*.db
+*.sqlite
+*.sqlite3
+*.log
+*.log.jsonl
+audit.log.jsonl
+
+# ============================================================
+#  DOCKER
+# ============================================================
+# Don't ignore docker-compose.yml (no secrets in it)
+# But ignore any override files that might contain secrets
+docker-compose.override.yml
+docker-compose.local.yml
+
+# ============================================================
+#  NODE / FRONTEND
+# ============================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn
+dist/
+.parcel-cache/
+
+# ============================================================
+#  IDE & EDITOR FILES
+# ============================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ============================================================
+#  OS FILES
+# ============================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+Thumbs.db

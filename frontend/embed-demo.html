@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaStore - Live AI Support Widget Embed Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #090d16;
+      color: #f1f5f9;
+      line-height: 1.6;
+    }
+    header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .brand span { color: #6366f1; }
+    nav a {
+      color: #94a3b8;
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #ffffff; }
+    .back-btn {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.05));
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #a5b4fc;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .hero-banner h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .hero-banner p {
+      color: #94a3b8;
+      max-width: 650px;
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+    }
+    .trigger-chat-btn {
+      background: #6366f1;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+      transition: all 0.2s;
+    }
+    .trigger-chat-btn:hover {
+      background: #4f46e5;
+      transform: translateY(-2px);
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .product-card {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s;
+    }
+    .product-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-4px);
+    }
+    .product-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+    .product-name {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .product-meta {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 16px;
+    }
+    .product-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .product-price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+    .ask-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #c7d2fe;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ask-btn:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: #6366f1;
+      color: #ffffff;
+    }
+    .info-card {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+    .code-block {
+      background: #020617;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 0.88rem;
+      color: #38bdf8;
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="brand">Nova<span>Tech</span> Store</a>
+    <nav>
+      <a href="index.html" class="back-btn">← Back to AI Support Portal</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="hero-banner">
+      <div class="badge">🔥 Live External Embed Demonstration</div>
+      <h1>Test Our Embedded AI Support Chatbot</h1>
+      <p>This demo website represents any third-party website (WordPress, Shopify, Next.js, or Webflow). Notice the floating chat bubble on the bottom right powered entirely by <code>widget.js</code>!</p>
+      <button class="trigger-chat-btn" onclick="window.AIWidget && window.AIWidget.open()">
+        💬 Click Here to Open AI Chatbot
+      </button>
+    </div>
+
+    <h2 class="section-title">📦 Featured Products</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-icon">💻</div>
+        <div class="product-name">UltraBook Pro 15</div>
+        <div class="product-meta">Code: PROD0001 · Warranty: 24m</div>
+        <div class="product-footer">
+          <span class="product-price">₹89,999</span>
+          <button class="ask-btn" onclick="window.AIWidget && window.AIWidget.sendMessage('Tell me about product PROD0001')">Ask AI</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🎧</div>
+        <div class="product-name">Noise-Cancelling Headphones</div>
+        <div class="product-meta">Code: PROD0003 · Returnable: Yes</div>
+        <div class="product-footer">
+          <span class="product-price">₹12,499</span>
+          <button class="ask-btn" onclick="window.AIWidget && window.AIWidget.sendMessage('Can I return PROD0003?')">Ask Return</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">⌚</div>
+        <div class="product-name">Smart Fitness Watch 4</div>
+        <div class="product-meta">Code: PROD0005 · Warranty: 12m</div>
+        <div class="product-footer">
+          <span class="product-price">₹6,999</span>
+          <button class="ask-btn" onclick="window.AIWidget && window.AIWidget.sendMessage('What is the warranty on PROD0005?')">Ask Warranty</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🔌</div>
+        <div class="product-name">Thunderbolt 4 Docking Station</div>
+        <div class="product-meta">Code: PROD0008 · In Stock</div>
+        <div class="product-footer">
+          <span class="product-price">₹14,999</span>
+          <button class="ask-btn" onclick="window.AIWidget && window.AIWidget.sendMessage('Is PROD0008 in stock?')">Ask Stock</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3 style="margin-bottom: 8px;">How this embed was created:</h3>
+      <p style="color: #94a3b8; font-size: 0.95rem;">This page simply includes the following one-line script tag before <code>&lt;/body&gt;</code>:</p>
+      <div class="code-block">&lt;script src="widget.js" data-bot-id="default"&gt;&lt;/script&gt;</div>
+    </div>
+  </div>
+
+  <!-- The Embeddable AI Support Widget -->
+  <script src="widget.js" data-bot-id="default"></script>
+
+</body>
+</html>

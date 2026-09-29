@@ -1,0 +1,82 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    },
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/auth(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/chat(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/orders(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/products(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/tickets(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/settings(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/widget/chat",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/health",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/metrics-snapshot",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/docs",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/openapi.json",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/widget.js",
+      "dest": "/frontend/widget.js"
+    },
+    {
+      "src": "/embed-demo.html",
+      "dest": "/frontend/embed-demo.html"
+    },
+    {
+      "src": "/(.*\\.(js|css|html|ico|png|svg|jpg|jpeg|gif|woff|woff2|ttf|eot))",
+      "dest": "/frontend/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/index.html"
+    }
+  ]
+}
