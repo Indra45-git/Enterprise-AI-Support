@@ -55,19 +55,7 @@ for candidate_db in possible_orig_dbs:
             pass
 
 # pyright: reportMissingImports=false
-try:
-    from app.main import app  # noqa: E402  # type: ignore[import-untyped, missing-import]
-except Exception as exc:
-    import traceback
-    from fastapi import FastAPI
-    from fastapi.responses import PlainTextResponse
-
-    app = FastAPI(title="Diagnostic Startup App")
-    startup_tb = traceback.format_exc()
-
-    @app.api_route("/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
-    def startup_error(path: str):
-        return PlainTextResponse(f"Vercel Serverless Function Startup Error:\n{startup_tb}", status_code=500)
+from app.main import app  # noqa: E402  # type: ignore  (must be top-level for Vercel to detect it)
 
 # Ensure models & tables are ready and seeded if needed
 try:
@@ -92,6 +80,3 @@ try:
             pass
 except Exception:
     pass
-
-
-
