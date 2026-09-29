@@ -128,10 +128,16 @@ async function loginWithPreset(email, password, silent = false) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     });
-    const data = await res.json();
+    let data = null;
+    const rawText = await res.text();
+    try {
+      data = JSON.parse(rawText);
+    } catch (_) {
+      data = null;
+    }
 
     if (!res.ok) {
-      if (!silent) showToast(data?.detail || 'Authentication failed', 'error');
+      if (!silent) showToast(data?.detail || data?.message || rawText || 'Authentication failed', 'error');
       return false;
     }
 
@@ -508,7 +514,13 @@ async function send() {
       body: JSON.stringify({ message: text })
     });
 
-    const data = await res.json();
+    let data = null;
+    const rawText = await res.text();
+    try {
+      data = JSON.parse(rawText);
+    } catch (_) {
+      data = null;
+    }
     removeTyping();
 
     if (!res.ok) {
@@ -517,7 +529,7 @@ async function send() {
         await loginWithPreset('user010@example.com', 'demo1234', true);
         return;
       }
-      addMsg(data?.detail || data?.message || `Error ${res.status}`, 'blocked');
+      addMsg(data?.detail || data?.message || rawText || `Error ${res.status}`, 'blocked');
       return;
     }
 

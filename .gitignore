@@ -46,6 +46,7 @@ junit*.xml
 #  DATABASE & LOGS  <- contain customer data
 # ============================================================
 *.db
+!backend/app.db
 *.sqlite
 *.sqlite3
 *.log
